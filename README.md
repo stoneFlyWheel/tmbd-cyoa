@@ -6,6 +6,7 @@
   <li>uses some details-summary and selector logic</li>
   <li>fun!</li>
   <li>learn how to make CYOA stories</li>
+  <li>learn how to use transitions</li>
 </ol>
 
 <h4>current issues:</h4>

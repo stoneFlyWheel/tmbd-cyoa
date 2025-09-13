@@ -33,27 +33,84 @@ figure {
   outline: 3px outset salmon;
 }
 
-.ucb1::after {
-  content: 'lalalal';
-  color: pink !important;
-  transition: all 0s linear;
-  transition-delay: 1s;
+.ucb_things {
+  margin: auto;
+  width: 290px;
+  max-height: 0;
+  margin-bottom: 0;
+  transition: max-height 0s, margin-bottom 0s;
+  transition-delay: 0s;
 }
 
-.main_thing:has(.trigger_start[open]) .ucb1::after {
-  content: 'ummm';
-  color: red !important;
-  transition: color 0s linear;
-  transition-delay: 1s;
+.main_thing:has(.trigger_start[open]) .ucb_things {
+  max-height: 1200px;
+  margin-bottom: 55px;
 }
 
+.ucb1, .ucb2, .ucb3, .ucb4, .ucb5, .ucb6, .ucb7, .ucb8, .ucb_whatever {
+  position: absolute;
+  top: 91px;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0s;
+  transition-delay: 0s;
+}
 
+.main_thing:has(.trigger_start[open]) .ucb2 {
+  transition-delay: 2s;
+}
+
+.main_thing:has(.trigger_start[open]) .ucb3 {
+  transition-delay: 4s;
+}
+
+.main_thing:has(.trigger_start[open]) .ucb4 {
+  transition-delay: 6.4s;
+}
+
+.main_thing:has(.trigger_start[open]) .ucb5 {
+  transition-delay: 8.1s;
+}
+
+.main_thing:has(.trigger_start[open]) .ucb6 {
+  transition-delay: 9.7s;
+}
+
+.main_thing:has(.trigger_start[open]) .ucb7 {
+  transition-delay: 12s;
+}
+
+.main_thing:has(.trigger_start[open]) .ucb8 {
+  transition-delay: 12.8s;
+}
+
+.main_thing:has(.trigger_start[open]) .ucb_whatever {
+  transition-delay: 13.7s;
+}
+
+.main_thing:has(.trigger_start[open]) .ucb1, .main_thing:has(.trigger_start[open]) .ucb2, .main_thing:has(.trigger_start[open]) .ucb3, .main_thing:has(.trigger_start[open]) .ucb4, .main_thing:has(.trigger_start[open]) .ucb5, .main_thing:has(.trigger_start[open]) .ucb6, .main_thing:has(.trigger_start[open]) .ucb7, .main_thing:has(.trigger_start[open]) .ucb8, .main_thing:has(.trigger_start[open]) .ucb_whatever {
+  visibility: visible;
+  opacity: 1;
+}
+
+.main_thing:has(.trigger_start[open]) .master_wrapper {
+  max-height: 2000px;
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 13.9s;
+}
+  
 /* main stuff!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
 .master_wrapper {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  visibility: invisible;
+  opacity: 0;
+  max-height: 0;
+  transition: max-height 0s, visibility 0s, opacity 0s;
+  transition-delay: 0s;
 }
 
 /* UI STUFF AAAAAAAAAAAAAAAAAAAAAAAAAAA */
@@ -258,9 +315,9 @@ details[open] > summary::before {
   margin: auto;
   margin-bottom: 25px;
   margin-top: 10px;
-  display: table;
   font-family: monospace;
   cursor: pointer;
+  width: 270px;
 }
 
 .ref {

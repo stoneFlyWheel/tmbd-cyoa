@@ -120,7 +120,7 @@ figure {
   padding: 5px;
   width: 275px;
   margin: 0 20px;
-  margin-top: 42px;
+  margin-top: 92px;
   margin-bottom: 15px;
   left: 11%;
   cursor: pointer;
@@ -362,6 +362,7 @@ details[open] > summary::before {
 .device_wrapper {
   position: relative;
   margin: 15px 20px;
+  margin-top: 62px;
   padding: 5px;
   cursor: pointer;
   left: -10%;

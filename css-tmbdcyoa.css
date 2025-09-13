@@ -3,9 +3,57 @@ figure {
   padding: 0;
 }
 
+.trigger_start {
+  margin: 20px;
+  text-align: center;
+}
+
+.start_button {
+  background: blue;
+  border: 3px outset #C5C9C1;
+  outline: 3px outset blue;
+  color: rgba(255, 206, 102, 1);
+  font-weight: 800;
+  width: 140px;
+  margin: auto;
+  padding: 5px;
+}
+
+.trigger_start:not([open]) > .start_button::after {
+  content: 'click me to begin!';
+}
+
+.trigger_start[open] > .start_button::after {
+  content: 'thank you :)'
+}
+
+.trigger_start[open] > .start_button {
+  color: crimson;
+  background: salmon;
+  outline: 3px outset salmon;
+}
+
+.ucb1::after {
+  content: 'lalalal';
+  color: pink !important;
+  transition: all 0s linear;
+  transition-delay: 1s;
+}
+
+.main_thing:has(.trigger_start[open]) .ucb1::after {
+  content: 'ummm';
+  color: red !important;
+  transition: color 0s linear;
+  transition-delay: 1s;
+}
+
+
+/* main stuff!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
 .master_wrapper {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* UI STUFF AAAAAAAAAAAAAAAAAAAAAAAAAAA */
@@ -17,9 +65,9 @@ figure {
   margin: 0 20px;
   margin-top: 42px;
   margin-bottom: 15px;
+  left: 11%;
   cursor: pointer;
   z-index: 100;
-  left: 11%;
   transition: 2s;
 }
 
@@ -89,12 +137,12 @@ figure {
 .ui_body_footer {
   background: linear-gradient(315deg, blue 0%, blue 62%, orange 62%, orange 64%, rgba(255, 206, 102, 1) 64%, transparent 90%);
   margin: -10px;
-  margin-top: 41px;
+  margin-top: 42px;
   padding: 5px;
   padding-right: 15px;
   color: rgba(255, 206, 102, 1);
   text-align: right;
-  font-size: 0.9em;
+  font-size: 0.8em;
   font-family: serif;
 }
 
@@ -115,25 +163,24 @@ figure {
 }
 
 .ui_cover:not([open]) > .num_one_summ.ui_cover_summ::after {
-  content: "okddddd";
+  content: "ok";
   position: absolute;
   right: -2px;
   bottom: 1px;
 }
 
 .ui_cover:not([open]) > .num_two_summ.ui_cover_summ::after {
-  content: "okbbbb";
+  content: "ok";
   position: absolute;
   right: -9px;
   bottom: -35px;
 }
 
 .ui_cover:not([open]) > .num_three_summ.ui_cover_summ::after {
-  content: "gfso";
+  content: "ok";
   position: absolute;
   right: -9px;
   bottom: -35px;
-  background: purple;
 }
 
 .ui_cover[open] > .ui_cover_summ::after {
@@ -260,10 +307,11 @@ details[open] > summary::before {
   margin: 15px 20px;
   padding: 5px;
   cursor: pointer;
-  left: -13%;
+  left: -10%;
   visibility: hidden;
   opacity: 0;
   transition: 2s;
+  transition-delay: 0s;
   width: 200px;
 }
 
@@ -281,14 +329,16 @@ details[open] > summary::before {
 
 /* LOGIC with ui AAAAAAAAAAAAAAA */
 
-.master_wrapper:has(.ui_cover.num_two[open]) .device_wrapper {
+.master_wrapper:has(.ui_cover.num_three[open]) .device_wrapper {
   visibility: visible;
   opacity: 1;
   left: 0;
+  transition-delay: 1.3s;
 }
 
-.master_wrapper:has(.ui_cover.num_two[open]) .ui_wrapper {
+.master_wrapper:has(.ui_cover.num_three[open]) .ui_wrapper {
   left: 0;
+  transition-delay: 1.3s;
 }
 
 /* ok all over now */
@@ -303,13 +353,14 @@ details[open] > summary::before {
   color: transparent;
   font-size: 0;
   transition: color 0.1s, font-size 0s;
-  transition-delay: 0.8s;
-} /* todo: this sucker doesn't disappear immediately when closed!!!! */
+  transition-delay: 0s;
+} 
 
 .kjm_turbotune {
   border: 5px double blue;
   outline: 2px solid blue;
   background: rgba(255, 206, 102, 1);
+  background-image: url(https://img.icons8.com/?size=25&id=648&format=png&color=0000FF);
   margin-right: auto;
   position: relative;
   z-index: 10000;
@@ -319,18 +370,18 @@ details[open] > summary::before {
   width: 0;
   height: 0;
   border: 0;
-  transition: background 0.6s linear, width 0.6s linear, height 0.6s linear, border 0.6s linear;
+  transition: background 0.3s ease-out, width 0.3s ease-out, height 0.3s ease-out, border 0.3s ease-out, color 0.3s ease-out, text-shadow 0.3s ease-out;
 }
 
 details.trigger_kjmtt[open] ~ .daa_kjmtt {
   position: absolute;
-  top: -5px;
-  left: -5px;
-  background: rgba(255,0,0,0.2);
-  width: 191px;
-  height: 214px;
-  border-radius: 10px 10px;
-  border: 5px solid pink;
+  top: 0px;
+  left: 0px;
+  background: rgba(210, 210, 210, 1);
+  width: 181px;
+  height: 204px;
+  border-radius: 7px 7px;
+  padding: 5px;
 }
 
 details.trigger_kjmtt[open] > .kjm_turbotune {
@@ -343,4 +394,28 @@ details.trigger_kjmtt[open] > .kjm_turbotune {
   color: white;
   font-size: 1.1em;
   text-shadow: 1px 1px 3px rgba(138, 209, 196, 0.8);
+  transition-delay: 0.5s;
+}
+
+details.trigger_kjmtt:not([open]) ~ .daa_kjmtt > * {
+  color: transparent;
+  text-shadow: 0px 0px 0px transparent;
+}
+
+details.trigger_kjmtt[open] ~ .daa_kjmtt > .kjmtt_header {
+  background: blue;
+  height: 30px;
+  border-top-left-radius: 7px 7px;
+  border-top-right-radius: 7px 7px;
+  padding: 7px;
+  margin: -5px;
+  margin-bottom: 5px;
+  color: rgba(255, 206, 102, 1);
+  text-shadow: 1px 1px 3px rgba(138, 209, 196, 0.8);
+}
+
+.tiny_text {
+  font-size: 0.6em;
+  padding-left: 15px;
+  margin-top: 1px;
 }

@@ -22,4 +22,4 @@
 </ol>
 
 <h4>link:</h4>
-<p>no functioning example atm :/</p>
+<p>here's a link to a functioning example: <a href="https://codepen.io/stoneflywheel/pen/VYvJdGY">click me!</a></p>

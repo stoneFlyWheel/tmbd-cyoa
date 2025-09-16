@@ -12,7 +12,7 @@
 <h4>current issues:</h4>
 <ol>
   <li>there is no CYOA functionality at all right now</li>
-  <li>the device is non-functional & un-styled</li>
+  <li>various little things are formatted badly or do stuff they shouldn't</li>
   <li>no story drafted :(</li>
 </ol>
 
@@ -22,4 +22,4 @@
 </ol>
 
 <h4>link:</h4>
-<p>here's a link to a functioning example: <a href="https://codepen.io/stoneflywheel/pen/VYvJdGY">click me!</a></p>
+<p>here's a link to a functioning example: <a href="https://codepen.io/stoneflywheel/pen/LEGPEaQ">click me!</a></p>

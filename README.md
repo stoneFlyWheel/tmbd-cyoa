@@ -1,4 +1,4 @@
-<h2>cyoa based on tmbd!!</h2>
+<h2>choose-your-own-adventure based on the murderbot diaries!!</h2>
 
 <h4>my goals for this project:</h4>
 <ol>
@@ -13,6 +13,7 @@
 <ol>
   <li>there is no CYOA functionality at all right now</li>
   <li>various little things are formatted badly or do stuff they shouldn't</li>
+  <li>add logic for showing the book files when a 'mark read' button is clicked at the bottom of the book app</li>
   <li>no story drafted :(</li>
 </ol>
 

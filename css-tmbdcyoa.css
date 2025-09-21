@@ -10,6 +10,7 @@ figure {
 .main_thing {
   position: relative;
   overflow: hidden;
+  margin-bottom: 10px;
 }
 
 .trigger_start {
@@ -53,7 +54,7 @@ figure {
 
 .main_thing:has(.trigger_start[open]) .ucb_things {
   max-height: 1200px;
-  margin-bottom: 75px;
+  margin-bottom: 55px;
 }
 
 .ucb1, .ucb2, .ucb3, .ucb4, .ucb5, .ucb6, .ucb7, .ucb8, .ucb_whatever {
@@ -361,6 +362,7 @@ details[open] > summary::before {
   padding: 7px;
   height: 200px;
   position: relative;
+  overflow: hidden;
 }
 
 /* LOGIC with ui AAAAAAAAAAAAAAA */
@@ -536,6 +538,10 @@ details.trigger_kjmtt[open] ~ .daa_kjmtt > .kjmtt_header {
   top: 130px;
 }
 
+figure.main_thing:has(details.book_mark_read:not([open])) .file_maybe_book {
+  display: none;
+}
+
 .dui_caption_actual {
   font-size: 0.6em;
   width: 70px;
@@ -567,9 +573,11 @@ details.trigger_kjmtt[open] ~ .daa_kjmtt > .kjmtt_header {
 }
 
 .upload_confirm {
-  bottom: 0;
+  position: relative;
+  z-index: 1000;
   background: pink;
-  width: 100%;
+  width: 90px;
+  height: 80px;
   text-align: center;
 }
 
@@ -593,12 +601,13 @@ details.trigger_kjmtt[open] ~ .daa_kjmtt > .kjmtt_header {
 }
 
 .app_books {
-  border: 4px dotted darkblue;
-  outline: 3px solid darkblue;
-  background: lightblue;
+  border: 2px solid white;
+  outline: 5px ridge crimson;
+  background: black;
   margin-left: auto;
   position: absolute;
   right: 10px;
+  top: 10px;
   z-index: 100;
 }
 
@@ -634,8 +643,39 @@ details.trigger_books[open] > .app_books {
 details.trigger_books:not([open]) ~ .daa_books {
   color: transparent;
   text-shadow: 0px 0px 0px transparent;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.28s ease-out;
 }
 
 .main_thing:has(details.trigger_books[open]) .kjm_turbotune {
   display: none;
+}
+
+.indent {
+  margin-left: 15px;
+}
+
+.book_mark_read:not([open]) > summary::after {
+  content: 'Mark complete? ✓';
+  background: crimson;
+  border: 2px solid crimson;
+  padding: 2px 4px;
+  border-radius: 5px 5px;
+  font-size: 0.8em;
+  margin-bottom: 20px;
+  color: black;
+  text-shadow: 0px 0px 0px transparent;
+}
+
+.book_mark_read[open] > summary::after {
+  content: 'Completed! ✖';
+  background: black;
+  border: 2px solid crimson;
+  padding: 2px 4px;
+  border-radius: 5px 5px;
+  font-size: 0.8em;
+  margin-bottom: 20px;
+  color: crimson;
+  text-shadow: 0px 0px 0px transparent;
 }

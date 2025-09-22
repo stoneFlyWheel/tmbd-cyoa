@@ -3,7 +3,7 @@ a {
 }
 
 figure {
-  margin: auto 0;
+  margin: 0 auto;
   padding: 0;
 }
 
@@ -41,10 +41,13 @@ figure {
   color: crimson;
   background: salmon;
   outline: 3px outset salmon;
+  display: none;
 }
 
 .ucb_things {
   margin: auto;
+  position: relative;
+  top: -80px;
   width: 290px;
   max-height: 0;
   margin-bottom: 0;
@@ -109,7 +112,7 @@ figure {
   opacity: 1;
   transition-delay: 7.8s;
 }
-  
+
 /* main stuff!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
 .master_wrapper {
@@ -136,6 +139,31 @@ figure {
   cursor: pointer;
   z-index: 100;
   transition: 2s;
+}
+
+.ee1, .ee4 {
+  display: inline;
+}
+
+.ee1 > span, .ee4 > span {
+  color: #5D5DF5;
+  font-size: 0.8em;
+}
+
+.ee1 > summary, .ee4 > summary {
+  color: blue;
+  font-size: 1em;
+}
+
+.ee3 {
+  position: absolute;
+  font-size: 0.65em;
+  color: #CC2806;
+  text-shadow: 0px 0px 7px #F75A11;
+  width: 80px;
+  overflow-wrap: break-word;
+  top: 120px;
+  right: 3px;
 }
 
 .ui_top1 {
@@ -226,26 +254,16 @@ figure {
   border: 2px outset #C5C9C1;
   outline: 2px outset blue;
   font-size: 1em;
-  content: "";
+  content: "ok";
+  position: absolute;
 }
 
 .ui_cover:not([open]) > .num_one_summ.ui_cover_summ::after {
-  content: "ok";
-  position: absolute;
   right: -2px;
   bottom: 1px;
 }
 
-.ui_cover:not([open]) > .num_two_summ.ui_cover_summ::after {
-  content: "ok";
-  position: absolute;
-  right: -9px;
-  bottom: -35px;
-}
-
-.ui_cover:not([open]) > .num_three_summ.ui_cover_summ::after {
-  content: "ok";
-  position: absolute;
+.ui_cover:not([open]) > .num_two_summ.ui_cover_summ::after, .ui_cover:not([open]) > .num_three_summ.ui_cover_summ::after, .ui_cover:not([open]) > .num_four_summ.ui_cover_summ::after {
   right: -9px;
   bottom: -35px;
 }
@@ -263,7 +281,7 @@ figure {
   bottom: 8px;
 }
 
-.ui_cover[open] { /* aaaaaaaaaaaaaaaaaaaaaaaaa*/
+.ui_cover[open] { 
   background: rgba(210, 210, 210, 1);
   z-index: 100;
   width: 251px;
@@ -277,26 +295,39 @@ figure {
   top: 32px;
 }
 
-.ui_cover[open].num_two {
+.ui_cover[open].num_two, .ui_cover[open].num_three, .ui_cover[open].num_four  {
   background: rgba(210, 210, 210, 1);
   left: 0;
   top: 0;
 }
 
-.ui_cover[open].num_three {
-  background: rgba(210, 210, 210, 1);
-  left: 0;
-  top: 0;
+.num_four:not([open]) > .num_four_summ {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
 }
 
-.ui_cover:not([open]).num_two_summ {
+.num_four[open] > .num_four_summ {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0s;
+}
+
+.ui_cover:not([open]).num_two_summ, .ui_cover:not([open]).num_three_summ, .ui_cover:not([open]).num_four_summ {
   left: 7px;
   top: 1px;
 }
 
-.ui_cover:not([open]).num_three_summ {
-  left: 7px;
-  top: 1px;
+figure.main_thing:has(details.parent_details:not([open]) > details.cu2[open]):has(details.book_mark_read[open]) .num_four:not(open) > .num_four_summ {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.5s;
+}
+
+figure.main_thing:has(details.parent_details:not([open]) > details.cu1[open]) .num_four:not(open) > .num_four_summ {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.5s;
 }
 
 details > summary {
@@ -335,9 +366,137 @@ details[open] > summary::before {
   overflow-y: scroll;
   background: rgba(0,0,0,0.1);
   padding-left: 4px;
+  margin: 2px 4px;
 }
 
+.uitc_parent {
+  max-height: 115px;
+}
+
+figure.main_thing:has(.option_work:not([open])) .work_cover, figure.main_thing:has(.option_settings:not([open])) .settings_cover, figure.main_thing:has(.option_report:not([open])) .report_cover {
+  display: none;
+}
+
+figure.main_thing:has(.option_work[open]) .work_cover, figure.main_thing:has(.option_settings[open]) .settings_cover, figure.main_thing:has(.option_report[open]) .report_cover {
+  display: visible;
+  background: rgba(210, 210, 210, 1);
+  z-index: 100;
+  width: 251px;
+  height: 121px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 10px;
+}
+
+.option_work:not([open]) > summary::after {
+  content: 'WORK';
+}
+
+.option_settings:not([open]) > summary::after {
+  content: 'SETTINGS';
+}
+
+.option_report:not([open]) > summary::after {
+  content: 'REPORT';
+}
+
+.option_quit:not([open]) > summary::after {
+  content: 'QUIT';
+}
+
+.option_work[open] > summary::after, .option_settings[open] > summary::after, .option_report[open] > summary::after {
+  content: 'ⓧ';
+  font-size: 1.2em;
+  color: blue;
+  text-shadow: 0px 0px 5px rgba(255, 206, 102, 1);
+  position: absolute;
+  right: 10px;
+  top: -20px;
+  z-index: 5000;
+}
+
+.rb_childwrapper {
+  display: flex;
+  background: rgba(0,0,0,0.1);
+  margin-bottom: 4px;
+  border-radius: 100% 300%;
+  border-top-left-radius: 30px 30px;
+}
+
+.report_button > summary::after
+{
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.5em;
+  border-radius: 50% 50%;
+}
+
+.report_button:not([open]) > summary::after {
+  content: '✖';
+  color: rgba(255, 206, 102, 1);
+  background: blue;
+}
+
+.report_button[open] > summary::after {
+  content: '✓';
+  color: blue;
+  background: rgba(255, 206, 102, 1);
+}
+
+.report_button_caption {
+  margin-left: 10px;
+}
+
+.report_button_clicked {
+  display: none;
+}
+
+figure.main_thing:has(.report_button[open]) .report_button_clicked {
+  display: inline;
+}
+
+.report_button_clicked:not([open]) > summary {
+  text-align: center;
+  background: blue;
+  color: rgba(255, 206, 102, 1);
+  margin: 3px auto;
+  padding: 2px 5px;
+  border-radius: 5px 5px;
+}
+
+.report_button_clicked:not([open]) > summary::after {
+  content: 'Submit report?'
+}
+
+.report_button_clicked[open] > summary {
+  text-align: center;
+  background: rgba(255, 206, 102, 1);
+  color: blue;
+  margin: 3px auto;
+  padding: 2px 5px;
+  border-radius: 5px 5px;
+}
+
+.report_button_clicked[open] > summary::after {
+  content: 'Report submitted!'
+}
+
+
+
+
 /* DEVICE STUFF AAAAAAAAAAAAAAAAAAAAAAAAAAA */
+
+
+
+
+
 
 .device_wrapper {
   position: relative;
@@ -652,6 +811,21 @@ details.trigger_books:not([open]) ~ .daa_books {
   display: none;
 }
 
+.books_end_link {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+.daa_books > details {
+  color: grey;
+  font-size: 0.7em;
+}
+
+.daa_books > details > summary {
+  color: lightgrey;
+  font-size: 1.4em;
+}
+
 .indent {
   margin-left: 15px;
 }
@@ -678,4 +852,208 @@ details.trigger_books:not([open]) ~ .daa_books {
   margin-bottom: 20px;
   color: crimson;
   text-shadow: 0px 0px 0px transparent;
+}
+
+.parent_details[open] > summary > img {
+  display: none;
+}
+
+.parent_details[open] > summary > div {
+  display: none;
+}
+
+.parent_details[open]:has(> .cu1) > summary::after {
+  position: absolute;
+  color: blue;
+  z-index: 5000;
+  left: 67px;
+  top: 3px;
+  content: 'ⓧ';
+}
+
+.parent_details[open]:has(> .cu2) > summary::after {
+  position: absolute;
+  color: blue;
+  z-index: 5000;
+  right: 3px;
+  top: 3px;
+  content: 'ⓧ';
+}
+
+.confirm_upload {
+  width: 77px;
+  height: 106px;
+  background: rgba(210, 210, 210, 1);
+  border-radius: 5px 5px;
+  position: absolute;
+  padding: 5px;
+  box-shadow: 3px 3px 3px grey;
+}
+
+.confirm_upload > summary > div {
+  text-align: center;
+  border-radius: 5px 5px;
+  font-size: 0.8em;
+  padding: 5px 0;
+  margin-top: 28px;
+  border: 1px solid blue;
+  background: rgba(255, 206, 102, 1);
+  color: blue;
+  font-weight: 800;
+}
+
+.confirm_upload[open] > summary > div {
+  text-align: center;
+  border-radius: 5px 5px;
+  font-size: 0.8em;
+  padding: 5px 2px;
+  margin-top: 28px;
+  border: 1px solid rgba(255, 206, 102, 1);
+  background: blue;
+  color: rgba(255, 206, 102, 1);
+  font-weight: 800;
+}
+
+.confirm_upload > summary > div::after {
+  content: 'Confirm Upload?';
+}
+
+.confirm_upload[open] > summary > div::after {
+  content: 'Upload Confirmed!';
+}
+
+.cu1 {
+  top: 2px;
+}
+
+.cu2 {
+  top: 2px;
+  right: 0;
+}
+
+.invis_cover {
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 800;
+  width: 77px;
+  height: 110px;
+  border-radius: 5px 5px;
+  border: 5px solid rgba(170, 100, 100, 0.1);
+  background: rgba(200, 90, 90, 0.05);
+  position: absolute;
+  color: #CC2806;
+  text-shadow: 0px 0px 7px #F75A11;
+}
+
+.ic1 {
+  top: 3px;
+}
+
+.ic2 {
+  top: 3px;
+  right: 0;
+}
+
+/* if actual's upload has been confirmed & closed, show invis_cover #1 */
+figure.main_thing:has(details.parent_details:not([open]) > details.cu1[open]) .invis_cover.ic1 {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* if lol's upload has been confirmed & closed, show invis_cover #1 */
+figure.main_thing:has(details.parent_details:not([open]) > details.cu2[open]) .invis_cover.ic1 {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* if lol's upload has been confirmed & closed, AND book_mark_read HAS been clicked, DO show invis_cover #2 */
+figure.main_thing:has(details.parent_details:not([open]) > details.cu2[open]):has(details.book_mark_read[open]) .invis_cover.ic2 {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* if actual's upload has been confirmed & closed, AND book_mark_read HAS been clicked, DO show invis_cover #2 */
+figure.main_thing:has(details.parent_details:not([open]) > details.cu1[open]):has(details.book_mark_read[open]) .invis_cover.ic2 {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+
+/* ENDINGS WOOOOOOOOOOOOOOOOOOOOO */
+
+
+
+.ending3 {
+  display: none;
+}
+
+.ending4 {
+  display: none;
+}
+
+.ending5 {
+  display: none;
+}
+
+/* if requirements for ending have triggered, display ending */
+/* specifics:
+  3: if a report has been submitted with either ending 3 trigger selected
+  4: if the quit button has been clicked
+  5: if a report has been submitted with the ending 5 trigger selected
+*/
+figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending3[open]) .ending3, figure.main_thing:has(.trigger_ending4[open]) .ending4, figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending5[open]) .ending5 {
+  display: inline;
+}
+
+/* if a report is submitted with both an ending 3 trigger and the ending 5 trigger, don't display ending 5*/
+figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending3[open]):has(.trigger_ending5[open]) .ending5 {
+  display: none !important;
+}
+
+/* hide the master wrapper when an ending's conditions are met */
+figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending3[open]) .master_wrapper, figure.main_thing:has(.trigger_ending4[open]) .master_wrapper, figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending5[open]) .master_wrapper {
+  display: none;
+}
+
+/* hide the 'connection established' stuff when an ending's conditions are met */
+figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending3[open]) .ucb_things, figure.main_thing:has(.trigger_ending4[open]) .ucb_things, figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending5[open]) .ucb_things {
+  display: none;
+}
+
+
+/* extra stuff for user help */
+
+.easy_mode {
+  display: inline;
+  background: #21B521;
+  width: 80px;
+  padding: 2px 5px;
+  text-align: center;
+  border: 4px double green;
+  border-radius: 5px 5px;
+  color: #00FF00;
+}
+
+.easy_mode[open] {
+  background: #21B521;
+  width: 100px;
+  padding: 2px 5px;
+  text-align: center;
+  border: 4px double #00FF00;
+  border-radius: 5px 5px;
+  color: darkgreen;
+}
+
+.easy_mode[open] > summary::after {
+  content: ' on!'
+}
+
+figure.main_thing:has(.easy_mode[open]) .ee1 > summary, figure.main_thing:has(.easy_mode[open]) .ee2 > summary, figure.main_thing:has(.easy_mode[open]) .dui_caption_nope, figure.main_thing:has(.easy_mode[open]) .ee4 > summary {
+  color: #00FF00;
 }

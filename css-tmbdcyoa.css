@@ -142,7 +142,7 @@ figure {
 }
 
 .ee1, .ee4 {
-  display: inline;
+  display: inline-block;
 }
 
 .ee1 > span, .ee4 > span {
@@ -488,15 +488,7 @@ figure.main_thing:has(.report_button[open]) .report_button_clicked {
   content: 'Report submitted!'
 }
 
-
-
-
 /* DEVICE STUFF AAAAAAAAAAAAAAAAAAAAAAAAAAA */
-
-
-
-
-
 
 .device_wrapper {
   position: relative;
@@ -982,32 +974,56 @@ figure.main_thing:has(details.parent_details:not([open]) > details.cu1[open]):ha
   opacity: 1;
 }
 
+/* work tab */
 
+.work_cover_upload {
+  display: inline;
+  overflow-wrap: break-word;
+  background: rgba(0, 0, 0, 0.1);
+}
 
+/* if work tab is open & actual file has been uploaded */
+figure.main_thing:has(details.option_work[open]):has(details.parent_details:not([open]) > details.cu1[open]) .work_cover_upload::after {
+  content: 'KJM_CYA_CSU_H3iP5thsMXVJaX+/DAf6Qw==.sh';
+}
+
+/* if work tab is open & lol file has been uploaded */
+figure.main_thing:has(details.option_work[open]):has(details.parent_details:not([open]) > details.cu2[open]) .work_cover_upload::after {
+  content: 'Sherlock Holmes: A Complete Omnibus.epub';
+}
+
+.work_upload_button2:not([open]) > summary {
+  width: 170px;
+  margin: 10px auto;
+  background: blue;
+  color: rgba(255, 206, 102, 1);
+  padding: 2px;
+  padding-left: 4px;
+  border: 2px outset #C5C9C1;
+  outline: 2px outset blue;
+  text-align: center;
+}
+
+.work_upload_button2:not([open]) > summary::after {
+  content: 'Begin file transfer?'
+}
 
 /* ENDINGS WOOOOOOOOOOOOOOOOOOOOO */
 
-
-
-.ending3 {
-  display: none;
-}
-
-.ending4 {
-  display: none;
-}
-
-.ending5 {
+.ending1, .ending2, .ending3, .ending4, .ending5, .ending6 {
   display: none;
 }
 
 /* if requirements for ending have triggered, display ending */
 /* specifics:
+  1: if a file has been uploaded with actual's file confirm open
+  2: if a file has been uploaded with lol's file confirm open
   3: if a report has been submitted with either ending 3 trigger selected
   4: if the quit button has been clicked
   5: if a report has been submitted with the ending 5 trigger selected
+  6: if a report has been submitted with every report button pressed
 */
-figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending3[open]) .ending3, figure.main_thing:has(.trigger_ending4[open]) .ending4, figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending5[open]) .ending5 {
+figure.main_thing:has(details.option_work[open]):has(details.parent_details:not([open]) > details.cu1[open]):has(.work_upload_button2[open]) .ending1, figure.main_thing:has(details.option_work[open]):has(details.parent_details:not([open]) > details.cu2[open]):has(.work_upload_button2[open]) .ending2, figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending3[open]) .ending3, figure.main_thing:has(.trigger_ending4[open]) .ending4, figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending5[open]) .ending5, figure.main_thing:has(.report_button_clicked[open]):has(.rb1[open]):has(.rb2[open]):has(.rb3[open]):has(.rb4[open]):has(.rb5[open]):has(.rb6[open]):has(.rb7[open]):has(.rb8[open]):has(.rb9[open]) .ending6 {
   display: inline;
 }
 
@@ -1016,13 +1032,18 @@ figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending3[open]):
   display: none !important;
 }
 
+/* if all report options have been pressed, don't show endings 3 & 5*/
+figure.main_thing:has(.report_button_clicked[open]):has(.rb1[open]):has(.rb2[open]):has(.rb3[open]):has(.rb4[open]):has(.rb5[open]):has(.rb6[open]):has(.rb7[open]):has(.rb8[open]):has(.rb9[open]) .ending3, figure.main_thing:has(.report_button_clicked[open]):has(.rb1[open]):has(.rb2[open]):has(.rb3[open]):has(.rb4[open]):has(.rb5[open]):has(.rb6[open]):has(.rb7[open]):has(.rb8[open]):has(.rb9[open]) .ending5 {
+  display: none !important;
+}
+
 /* hide the master wrapper when an ending's conditions are met */
-figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending3[open]) .master_wrapper, figure.main_thing:has(.trigger_ending4[open]) .master_wrapper, figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending5[open]) .master_wrapper {
+figure.main_thing:has(details.option_work[open]):has(details.parent_details:not([open]) > details.cu1[open]):has(.work_upload_button2[open]) .master_wrapper, figure.main_thing:has(details.option_work[open]):has(details.parent_details:not([open]) > details.cu2[open]):has(.work_upload_button2[open]) .master_wrapper, figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending3[open]) .master_wrapper, figure.main_thing:has(.trigger_ending4[open]) .master_wrapper, figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending5[open]) .master_wrapper, figure.main_thing:has(.report_button_clicked[open]):has(.rb1[open]):has(.rb2[open]):has(.rb3[open]):has(.rb4[open]):has(.rb5[open]):has(.rb6[open]):has(.rb7[open]):has(.rb8[open]):has(.rb9[open]) .master_wrapper {
   display: none;
 }
 
 /* hide the 'connection established' stuff when an ending's conditions are met */
-figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending3[open]) .ucb_things, figure.main_thing:has(.trigger_ending4[open]) .ucb_things, figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending5[open]) .ucb_things {
+figure.main_thing:has(details.option_work[open]):has(details.parent_details:not([open]) > details.cu1[open]):has(.work_upload_button2[open]) .ucb_things, figure.main_thing:has(details.option_work[open]):has(details.parent_details:not([open]) > details.cu2[open]):has(.work_upload_button2[open]) .ucb_things, figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending3[open]) .ucb_things, figure.main_thing:has(.trigger_ending4[open]) .ucb_things, figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending5[open]) .ucb_things, figure.main_thing:has(.report_button_clicked[open]):has(.rb1[open]):has(.rb2[open]):has(.rb3[open]):has(.rb4[open]):has(.rb5[open]):has(.rb6[open]):has(.rb7[open]):has(.rb8[open]):has(.rb9[open]) .ucb_things {
   display: none;
 }
 
@@ -1030,7 +1051,7 @@ figure.main_thing:has(.report_button_clicked[open]):has(.trigger_ending3[open]) 
 /* extra stuff for user help */
 
 .easy_mode {
-  display: inline;
+  display: inline-block;
   background: #21B521;
   width: 80px;
   padding: 2px 5px;
